@@ -1,0 +1,29 @@
+<body>
+	<div class="login-wrap">
+		<h2>Login</h2>
+		<form [formGroup]="loginGroup" (ngSubmit)="validar()">
+			<div class="form">
+				<mat-form-field>
+					<input matInput placeholder="Correo Electrónico" formControlName="email" type="text">
+				</mat-form-field>
+				<mat-error *ngIf="loginGroup.controls.email.hasError('required')">
+					El correo electrónico es obligatorio
+				</mat-error>
+				<mat-error *ngIf="loginGroup.controls.email.hasError('email') && !loginGroup.controls.email.hasError('required')">
+					El correo electrónico no es valido
+				</mat-error>
+
+				<mat-form-field>
+					<input matInput placeholder="Contraseña" type="password" formControlName="password">
+				</mat-form-field>
+				<mat-error *ngIf="loginGroup.controls.password.hasError('required')">
+					La contraseña es obligatoria
+				</mat-error>
+
+				<button mat-stroked-button>Validar</button>
+			</div>
+		</form>
+
+		<div *ngIf="mensaje">{{mensaje}}</div>
+	</div>
+</body>
