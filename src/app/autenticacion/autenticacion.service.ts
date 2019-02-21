@@ -21,16 +21,4 @@ export class AutenticacionService {
   login(correo, clave){
   	return this.http.post(Environments.ENDPOINT+"/login",{email:correo,password:clave},{headers:this.headers}).pipe(map(datos=>{return datos}));
   }
-
-  public empresa() {
-    this.http.get(Environments.ENDPOINT+"/empresas/dafault")
-	.subscribe(data =>{
-		localStorage.setItem("idEmpresa", data['data'].idEmpresa);
-		localStorage.setItem("nomEmpresa", data['data'].nomEmpresa);
-		console.log(JSON.stringify(data['data']));
-	}, (err) => {
-		console.log(err);
-        //Connection failed message
-    });
-  }
 }

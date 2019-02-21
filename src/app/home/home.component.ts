@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AutenticacionService } from '../autenticacion/autenticacion.service';
 import { Router } from '@angular/router';
+import { EmpresasServiceService } from '../services/empresas-service.service';
 
 @Component({
   selector: 'app-home',
@@ -13,14 +14,15 @@ export class HomeComponent implements OnInit {
 	idEmpresa: string;
 
   constructor(private autenticacionService: AutenticacionService,
-  			private router: Router,) { }
+			  private router: Router,
+			  private empresasService: EmpresasServiceService,) { }
 
   ngOnInit() {
   	this.verificarEmpresa();
   }
 
   verificarEmpresa(){
-  	this.autenticacionService.empresa();
+  	this.empresasService.obtenerEmpresaDefault();
   	this.empresa = localStorage.getItem("nomEmpresa");
   	this.idEmpresa = localStorage.getItem("idEmpresa");
   }
